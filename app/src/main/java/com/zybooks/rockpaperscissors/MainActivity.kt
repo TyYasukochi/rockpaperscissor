@@ -1,5 +1,7 @@
 package com.zybooks.rockpaperscissors
 
+//implemented bonus 3
+
 enum class Hands{ROCK, PAPER, SCISSORS}
 enum class RoundResult {TIE, WIN, LOSS}
 
