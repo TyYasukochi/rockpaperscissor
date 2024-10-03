@@ -5,7 +5,15 @@ package com.zybooks.rockpaperscissors
 enum class Hands{ROCK, PAPER, SCISSORS}
 enum class RoundResult {TIE, WIN, LOSS}
 
-fun winres(){val randnum = (1..3).random()
+/*
+randomly generates a response for when the user wins/loses/ties a round
+uses random() to pick a number between 1-5
+depending on which number is picked, the corresponding message will get displayed
+
+returns the message
+ */
+
+fun winres(){val randnum = (1..5).random()
     when(randnum) {
         1 -> print("You Won! Good Choice!\n")
         2 -> print("Wow You Are Lucky!\n")
@@ -14,7 +22,7 @@ fun winres(){val randnum = (1..3).random()
         5 -> print("You Win! Good Round!\n")
     }
 }
-fun lossres(){val randnum = (1..3).random()
+fun lossres(){val randnum = (1..5).random()
     when(randnum) {
         1 -> print("You Lost Nice Try!\n")
         2 -> print("Unlucky!\n")
@@ -24,7 +32,7 @@ fun lossres(){val randnum = (1..3).random()
     }
 }
 fun tieres() {
-    val randnum = (1..3).random()
+    val randnum = (1..5).random()
     when (randnum) {
         1 -> print("Almost!\n")
         2 -> print("Great Minds Think Alike!\n")
@@ -34,6 +42,10 @@ fun tieres() {
     }
 }
 
+/*
+main function
+starts by greeting the player then starts the game
+ */
     fun main() {
         println("Welcome to the Rock, Paper, Scissors simulator!")
         println("Player, what is your name?")
@@ -41,6 +53,16 @@ fun tieres() {
         Gameplayer(name)
     }
 
+/*
+main class for the game called Gameplayer
+takes in the user's name for the parameter
+
+inits variables that will be incremented
+prompts the user and collects their responses
+calls the methods for generating the computer choice and the game results
+
+returns the results and stats
+ */
     class Gameplayer(var name: String) {
         var wins = 0
         var losses = 0
@@ -65,6 +87,11 @@ fun tieres() {
             }
             println("Wins: $wins \nLosses: $losses\nTies:$ties\nWin-Loss Ratio: $winLossRatio")
         }
+    /*
+    method for choosing which hand the user wants to play
+    depending on what they input, their corresponding choice will be played
+    validates appropriate inputs and prompts the user when otherwise
+    */
 
         fun chooseHand(): Hands? {
             println("$name!, choose a hand! Rock, Paper, or Scissors? ('r', 'p', or 's')")
@@ -80,6 +107,12 @@ fun tieres() {
             }
         }
 
+    /*
+    method that randomly generates a choice for the computer to play
+    uses the same approach as the case responses by generating an int and outputting a corresponding choice
+
+    *note: the else condition is never going to actually happen but just needs to be defined for when conditional
+    */
         class Game() {
             fun rockPaperScissors(): Hands {
                 val randnum = (1..3).random()
@@ -92,6 +125,11 @@ fun tieres() {
                 }
             }
 
+        /*
+        method that determines the winner through conditionals
+        also tracks game stats by incrementing values for each case
+        starts by checking for a tie, then uses when conditional for different cases
+        */
             fun getGameResult(
                 playerhand: Hands?,
                 computerhand: Hands,
